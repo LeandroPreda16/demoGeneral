@@ -1,0 +1,11 @@
+com\example\demo\DemoApplication.class
+com\example\kafka\KafkaConsumer2.class
+com\example\repository\RedisRepository.class
+com\example\config\AppConfig.class
+com\example\service\MessageService.class
+com\example\kafka\KafkaConsumerAsync.class
+com\example\interceptors\MyCustomInterceptor.class
+com\example\kafka\KafkaConsumer.class
+com\example\config\NeedLogin.class
+com\example\controller\MessageController.class
+com\example\demo\ServletInitializer.class

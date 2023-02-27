@@ -1,0 +1,30 @@
+package com.example.repository;
+
+import com.example.model.Message;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.redis.DataRedisTest;
+import org.springframework.data.redis.core.RedisTemplate;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+@DataRedisTest
+public class MessageRepositoryTest {
+
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
+
+    @Autowired
+    private MessageRepository messageRepository;
+
+    @Test
+    public void testSaveMessage() {
+        Message message = new Message("1", "Hello, world!");
+
+        messageRepository.save(message);
+
+        Message savedMessage = (Message) redisTemplate.opsForValue().get("message:1");
+
+        assertThat(savedMessage).isEqualTo(message);
+    }
+}

@@ -1,0 +1,25 @@
+package com.example.repository;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.example.model.Message;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.redis.DataRedisTest;
+
+@DataRedisTest
+public class MessageRepositoryTest {
+
+    @Autowired
+    private MessageRepository messageRepository;
+
+    @Test
+    public void testSaveAndFindById() {
+        Message message = new Message("Hello, world!");
+        messageRepository.save(message);
+
+        Message foundMessage = messageRepository.findById(message.getId()).orElse(null);
+        assertEquals(message, foundMessage);
+    }
+}

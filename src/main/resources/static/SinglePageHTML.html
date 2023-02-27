@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Send Message</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <form>
+        <label for="message">Message:</label><br>
+        <input type="text" id="message" name="message"><br>
+        <button type="button" onclick="sendMessage()">Send Message</button>
+    </form>
+    <script>
+        function sendMessage() {
+            var message = document.getElementById("message").value;
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/messages");
+            xhr.setRequestHeader("Content-Type", "text/plain");
+            xhr.send(message);
+            alert("Message sent: " + message);
+        }
+    </script>
+</body>
+</html>
